@@ -1,0 +1,45 @@
+---
+title: Análise simples do mtcars usando R
+---
+
+Instalando o pacote tidyverse
+
+```{r}
+install.packages("tidyverse")
+```
+```{r}
+library(tidyverse)
+```
+```{r}
+# Carregando dataset
+data("mtcars")
+```
+```{r}
+# Visualizar primeiras linhas
+head(mtcars)
+```
+
+
+```{r}
+# Estatísticas básicas
+summary(mtcars$mpg)
+```
+
+
+```{r}
+# Criar nova coluna classificando consumo
+mtcars <- mtcars %>%
+  mutate(efficiency = ifelse(mpg > 20, "Alta", "Baixa"))
+```
+```{r}
+# Gráfico: Relação entre peso e consumo
+ggplot(mtcars, aes(x = wt, y = mpg, color = efficiency)) +
+  geom_point(size = 3) +
+  labs(
+    title = "Relação entre Peso e Consumo (mpg)",
+    x = "Peso do Carro",
+    y = "Milhas por Galão",
+    color = "Eficiência"
+  )
+```
+
